@@ -65,6 +65,8 @@ async def handle_client(ws):
     player_scores[player_id] = 0
     player_shapes[player_id] = "square"  # default shape
 
+    await ws.send(json.dumps({"type": "assign_id", "player_id": player_id}))
+
     print(f"Player {player_id} joined")
 
     # Lobby: wait until 2 players connected

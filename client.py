@@ -100,6 +100,11 @@ async def game_client():
                 if "shapes" in data:
                     player_shapes = data["shapes"]
 
+            elif data["type"] == "assign_id":
+                player_id = str(data["player_id"])
+                print(f"My player ID is {player_id}")
+
+
         except asyncio.TimeoutError:
             pass  # Continue rendering even if no message
 
@@ -138,7 +143,7 @@ async def game_client():
             y_offset += 25
 
         # Draw your coordinates
-        my_pos = players.get(str(player_id), {"x":0,"y":0})
+        my_pos = players.get(player_id, {"x":0,"y":0})
         coord_text = font.render(f"Your position: x={my_pos['x']:.2f}, y={my_pos['y']:.2f}", True, (255,255,255))
         screen.blit(coord_text, (10, HEIGHT - 30))
 
